@@ -94,6 +94,7 @@ namespace FFmpegFirstTry
             AVFrame* frame = ffmpeg.av_frame_alloc();
             if (frame == null)
             {
+                ffmpeg.av_packet_unref(packet);
                 ffmpeg.swr_free(&resampler);
                 ffmpeg.avformat_free_context(format);
                 throw new Exception($"Could not allocate the temporary frame");
